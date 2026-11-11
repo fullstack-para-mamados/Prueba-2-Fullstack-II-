@@ -89,7 +89,7 @@ function App() {
         // Contenedor de toda la página: ocupa al menos el alto de la pantalla y usa un fondo gris claro.
         <div className="min-vh-100 bg-body-tertiary">
             {/* Barra superior oscura con el nombre de la tienda y un mensaje breve. */}
-            <nav className="navbar navbar-dark bg-dark shadow-sm">S
+            <nav className="navbar navbar-dark bg-dark shadow-sm">
                 {/* Centra el contenido de la barra y limita su ancho. */}
                 <div className="container">
                     <span className="navbar-brand fw-bold">GOTYSHOP</span>
