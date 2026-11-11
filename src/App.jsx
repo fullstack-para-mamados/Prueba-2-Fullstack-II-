@@ -5,6 +5,9 @@ import ProductoCard from "./components/ProductoCard";
 import Carrito from "./components/Carrito";
 import Favoritos from "./components/Favoritos";
 import Resenas from "./components/Resenas";
+import { filtrarProductos } from "./utils/filtrarProductos";
+import { calcularTotal } from "../utils/calcularTotal";
+
 
 function leerListaGuardada(clave) {
     try {
@@ -81,9 +84,7 @@ function App() {
         setResenas([...resenas, resena]);
     }
 
-    const filtrados = productos.filter(p =>
-        p.nombre.toLowerCase().includes(texto.toLowerCase())
-    );
+    const filtrados = filtrarProductos(productos, texto);
 
         return (
         // Contenedor de toda la página: ocupa al menos el alto de la pantalla y usa un fondo gris claro.
