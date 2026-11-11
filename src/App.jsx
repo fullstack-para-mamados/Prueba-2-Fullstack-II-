@@ -1,5 +1,4 @@
-import { useState } from "react";
-import "./App.css";
+import { useState, useEffect } from "react";import "./App.css";
 import productos from "./data/productos";
 import Buscador from "./components/Buscador";
 import ProductoCard from "./components/ProductoCard";
@@ -7,11 +6,56 @@ import Carrito from "./components/Carrito";
 import Favoritos from "./components/Favoritos";
 import Resenas from "./components/Resenas";
 
+function leerListaGuardada(clave) {
+    try {
+        const datos = localStorage.getItem(clave);
+
+        if (datos === null) {
+            return [];
+        }
+
+        const lista = JSON.parse(datos);
+        return Array.isArray(lista) ? lista : [];
+    } catch {
+        return [];
+    }
+}
+
+
+
 function App() {
     const [texto, setTexto] = useState("");
-    const [carrito, setCarrito] = useState([]);
-    const [favoritos, setFavoritos] = useState([]);
+    const [carrito, setCarrito] = useState(() =>
+    leerListaGuardada("gotyshop_carrito")
+    );
+    const [favoritos, setFavoritos] = useState(() =>
+        leerListaGuardada("gotyshop_favoritos")
+    );;
     const [resenas, setResenas] = useState([]);
+
+    useEffect(() => {
+        try {
+            localStorage.setItem(
+                "gotyshop_carrito",
+                JSON.stringify(carrito)
+            );
+        } catch (error) {
+            console.error("No se pudo guardar el carrito:", error);
+        }
+    }, [carrito]);
+
+    useEffect(() => {
+        try {
+            localStorage.setItem(
+                "gotyshop_favoritos",
+                JSON.stringify(favoritos)
+            );
+        } catch (error) {
+            console.error("No se pudieron guardar los favoritos:", error);
+        }
+    }, [favoritos]);
+
+
 
     function agregarAlCarrito(producto) {
         setCarrito([...carrito, producto]);
