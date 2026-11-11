@@ -4,6 +4,12 @@ function ProductoCard({ producto, agregarAlCarrito, agregarFavorito }) {
         <article className="card h-100 shadow-sm">
             {/* Contenido interno de la tarjeta. */}
             <div className="card-body d-flex flex-column">
+                <img
+                    src={producto.imagen}
+                    alt={`Portada de ${producto.nombre}`}
+                    className="img-fluid rounded mb-3"
+                    style={{ width: "100%", height: "180px", objectFit: "cover" }}
+                />
                 {/* Nombre del juego con estilo de título de tarjeta. */}
                 <h3 className="card-title h5">{producto.nombre}</h3>
 
