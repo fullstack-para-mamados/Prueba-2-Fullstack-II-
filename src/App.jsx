@@ -6,7 +6,6 @@ import Carrito from "./components/Carrito";
 import Favoritos from "./components/Favoritos";
 import Resenas from "./components/Resenas";
 import { filtrarProductos } from "./utils/filtrarProductos";
-import { calcularTotal } from "../utils/calcularTotal";
 
 
 function leerListaGuardada(clave) {
