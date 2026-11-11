@@ -1,15 +1,20 @@
 import { useState } from "react";
 
+import { validarResena } from "../utils/validarResena";
+
+
 function Resenas({ productos, resenas, agregarResena }) {
 
     const [productoId, setProductoId] = useState(productos[0].id);
     const [nombre, setNombre] = useState("");
     const [comentario, setComentario] = useState("");
+    const resenaValida = validarResena(nombre, comentario);
+
 
     function enviar(e) {
         e.preventDefault();
 
-        if (nombre.trim() === "" || comentario.trim() === "") {
+        if (!validarResena(nombre, comentario)) {
             return;
         }
 
@@ -49,7 +54,9 @@ function Resenas({ productos, resenas, agregarResena }) {
                     value={comentario}
                     onChange={(e) => setComentario(e.target.value)}
                 />
-                <button type="submit">Publicar</button>
+                <button type="submit" disabled={!resenaValida}>
+                    Publicar
+                </button>
             </form>
 
             {resenas.length === 0 && <p>Todavía no hay reseñas</p>}
