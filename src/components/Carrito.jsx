@@ -1,6 +1,9 @@
+import { calcularTotal } from "../utils/calcularTotal";
+
+
 function Carrito({ carrito, quitarDelCarrito }) {
     // JavaScript: suma el precio de todos los productos del carrito.
-    const total = carrito.reduce((suma, item) => suma + item.precio, 0);
+    const total = calcularTotal(carrito);
 
     return (
         // Bootstrap: card crea el panel y shadow-sm agrega una sombra suave.
